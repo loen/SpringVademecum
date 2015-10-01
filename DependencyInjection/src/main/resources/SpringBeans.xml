@@ -21,9 +21,9 @@
 
     <aop:config>
         <aop:aspect id="minstrel" ref="minstrel">
-            <aop:pointcut id="embark" expression="execution(* *.embark(..))" />
-            <aop:before pointcut-ref="embark" method="beforeQuest" />
-            <aop:after  pointcut-ref="embark" method="afterQuest" />
+            <aop:pointcut id="embarkPoincut" expression="execution(* *.embark(..))" />
+            <aop:before pointcut-ref="embarkPoincut" method="beforeQuest" />
+            <aop:after  pointcut-ref="embarkPoincut" method="afterQuest" />
         </aop:aspect>
     </aop:config>
 </beans>
