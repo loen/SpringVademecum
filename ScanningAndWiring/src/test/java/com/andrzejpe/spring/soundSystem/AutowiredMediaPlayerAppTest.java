@@ -20,14 +20,9 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = SoundSystemJavaConfig.class)
-public class AutowiredMediaPlayerAppTest {
+public class AutowiredMediaPlayerAppTest extends BaseTest {
 
-    //Really bad approach - you have to deal with special
-    //characters and formatting.
-    @Rule
-    public final StandardOutputStreamLog log = new StandardOutputStreamLog();
 
-    private final String lineSeparator = System.getProperty("line.separator");
     @Autowired
     MediaPlayer mediaPlayer;
 

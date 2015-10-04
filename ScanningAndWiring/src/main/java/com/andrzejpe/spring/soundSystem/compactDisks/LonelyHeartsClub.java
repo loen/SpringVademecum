@@ -11,4 +11,5 @@ public class LonelyHeartsClub implements CompactDisc {
     public void play() {
         System.out.println("LonelyHeartsClub");
     }
+
 }

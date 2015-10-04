@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans.xsd
+	    http://www.springframework.org/schema/util
+	    http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+    <bean id="LonelyHeartsClubXml" class="com.andrzejpe.spring.soundSystem.compactDisks.LonelyHeartsClub" />
+    <bean id="AutowiredMediaPlayerXml" class="com.andrzejpe.spring.soundSystem.mediaPlayers.AutowiredMediaPlayer">
+        <constructor-arg ref="LonelyHeartsClubXml" />
+    </bean>
+
+    <bean id="AutowiredMediaPlayerCPath" class="com.andrzejpe.spring.soundSystem.mediaPlayers.AutowiredMediaPlayer"
+            c:cd-ref="LonelyHeartsClubXml"/>
+
+    <bean id="compactDiskWithTracks" class="com.andrzejpe.spring.soundSystem.compactDisks.TrackedCompactDisc">
+        <constructor-arg value="Nirvana" />
+        <constructor-arg value="Nevermind" />
+        <constructor-arg>
+            <list>
+                <value>track 1</value>
+                <value>track 2</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="propertyCompactDisk" class="com.andrzejpe.spring.soundSystem.compactDisks.PropertyCompactDisk"
+          p:author="QUOTSA" p:title="GO" p:tracks-ref="tracks"/>
+
+    <util:list id="tracks">
+        <value>track 1</value>
+        <value>track 2</value>
+    </util:list>
+</beans>
