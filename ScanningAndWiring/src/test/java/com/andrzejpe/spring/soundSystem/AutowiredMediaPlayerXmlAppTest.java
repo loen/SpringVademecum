@@ -49,6 +49,7 @@ public class AutowiredMediaPlayerXmlAppTest extends BaseTest implements Applicat
     public void shouldGeAutowiredMediaPlayerCPath() {
         MediaPlayer AutowiredMediaPlayerCPath = (MediaPlayer) context.getBean("AutowiredMediaPlayerCPath");
         AutowiredMediaPlayerCPath.play();
+
         assertEquals("LonelyHeartsClub" + lineSeparator , log.getLog());
     }
 
