@@ -1,8 +1,9 @@
 package com.andrzejpe.spring.soundSystem;
 
+import com.andrzejpe.spring.soundSystem.compactDisks.CompactDisc;
+import com.andrzejpe.spring.soundSystem.compactDisks.ExtendedCompactDisk;
 import com.andrzejpe.spring.soundSystem.compactDisks.LonelyHeartsClub;
-import com.andrzejpe.spring.soundSystem.compactDisks.SgtPeppers;
-import junit.framework.Assert;
+import com.andrzejpe.spring.soundSystem.config.SoundSystemJavaConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.BeansException;
@@ -25,19 +26,27 @@ public class SoundSystemWithJavaAppTest implements ApplicationContextAware {
     private ApplicationContext context;
 
     @Inject
-    private SgtPeppers sgtPepper;
+    private CompactDisc injectLonelyHeartsClub;
 
-    private LonelyHeartsClub lonelyHeartsClub;
+    private CompactDisc lonelyHeartsClub;
+
+    private ExtendedCompactDisk revolver;
 
     @Test
-    public void sgtPepperShouldBeSet(){
-        assertNotNull(sgtPepper);
+    public void injectLonelyHeartsClubShouldBeSet(){
+        assertNotNull(injectLonelyHeartsClub);
     }
 
     @Test
     public void lonelyHeartsClubShouldBeSet(){
         lonelyHeartsClub = (LonelyHeartsClub)context.getBean("lonelyHeartsClub");
         assertNotNull(lonelyHeartsClub);
+    }
+
+    @Test
+    public void revolverShouldBeSet() {
+        revolver = (ExtendedCompactDisk) context.getBean("revolver");
+        assertNotNull(revolver);
     }
 
     @Override

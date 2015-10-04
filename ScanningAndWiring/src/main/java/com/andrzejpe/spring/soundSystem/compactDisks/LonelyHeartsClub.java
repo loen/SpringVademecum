@@ -1,6 +1,5 @@
 package com.andrzejpe.spring.soundSystem.compactDisks;
 
-import com.andrzejpe.spring.soundSystem.CompactDisc;
 import org.springframework.stereotype.Component;
 
 /**
