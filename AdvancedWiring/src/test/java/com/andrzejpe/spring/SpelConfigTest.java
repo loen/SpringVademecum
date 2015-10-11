@@ -1,7 +1,7 @@
 package com.andrzejpe.spring;
 
-import com.andrzejpe.spring.properties.Motor;
-import com.andrzejpe.spring.properties.Rower;
+import com.andrzejpe.spring.config.SpelConfig;
+import com.andrzejpe.spring.spel.ItemConsumerByConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,23 +14,14 @@ import static org.junit.Assert.assertEquals;
  * Created by jedrek on 2015-10-11.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/beans.xml")
-public class RuntimeXmlPropertiesTest {
+@ContextConfiguration(classes = SpelConfig.class)
+public class SpelConfigTest {
 
     @Autowired
-    Motor motor;
-
-    @Autowired
-    Rower rower;
-
+    ItemConsumerByConfig itemConsumerByConfig;
 
     @Test
-    public void motorShouldBeKawasaki() {
-        assertEquals("test_kawasaki", motor.getName());
-    }
-
-    @Test
-    public void rowerShouldBeHonda3() {
-        assertEquals("test_wigry3", rower.getName());
+    public void shouldSetName() {
+        assertEquals("new_item", itemConsumerByConfig.getName());
     }
 }
