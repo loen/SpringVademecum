@@ -15,7 +15,9 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ProfileConfig.class)
 @ActiveProfiles(profiles = "dev")
-public class ProfileConfigTest {
+public class ProfileConfigTest  {
+
+
 
     @Inject
     private DataSource ds;
