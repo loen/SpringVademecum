@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by jedrek on 2015-10-15.
@@ -33,5 +34,11 @@ public class AopTest {
         assertTrue(audience.isTShirt());
         assertTrue(audience.isGoodTimeBefore());
         assertTrue(audience.isGoodTimeAfter());
+    }
+
+    @Test
+    public void audienceShouldSingSongWithFoo(){
+        performance.singSong("TestSong");
+        assertEquals("TestSong", audience.getPlayedSong());
     }
 }

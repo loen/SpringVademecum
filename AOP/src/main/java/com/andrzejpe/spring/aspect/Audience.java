@@ -16,6 +16,7 @@ public class Audience {
     private boolean isGoodTimeBefore;
 
     private boolean isGoodTimeAfter;
+    private String playedSong;
 
     @Pointcut("execution(* com.andrzejpe.spring.concert.Performance.perform(..))")
     public void pointcut(){}
@@ -58,6 +59,12 @@ public class Audience {
         isPopCorn = true;
     }
 
+    @Before("execution(* com.andrzejpe.spring.concert.Performance.singSong(String)) && args(title)")
+    public void peopleSingWithFoo(String title){
+        System.out.println(String.format("Audience starts singing: %s", title));
+        this.playedSong = title;
+    }
+
     public boolean isBeer() {
         return isBeer;
     }
@@ -80,5 +87,9 @@ public class Audience {
 
     public boolean isGoodTimeBefore() {
         return isGoodTimeBefore;
+    }
+
+    public String getPlayedSong() {
+        return playedSong;
     }
 }

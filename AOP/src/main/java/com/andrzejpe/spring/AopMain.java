@@ -15,5 +15,10 @@ public class AopMain {
 
         Performance performance = context.getBean(Performance.class);
         performance.perform();
+
+        System.out.println("---------------------------");
+        System.out.println("Intermission");
+        System.out.println("---------------------------");
+        performance.singSong("Pretender");
     }
 }
