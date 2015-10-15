@@ -23,6 +23,7 @@ public class AopXmlTest {
     @Autowired
     Audience audience;
 
+
     @Test
     public void allAdvicesShouldBeExecuted(){
         performance.perform();
