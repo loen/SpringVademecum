@@ -27,6 +27,12 @@ public class Audience {
         isBeer = true;
     }
 
+    @Before("pointcut()")
+    public void eatPopcorn(){
+        System.out.println("Eat popcorn");
+        isPopCorn = true;
+    }
+
     @After("pointcut()")
     public void buyCd(){
         System.out.println("CD bought");
@@ -51,12 +57,6 @@ public class Audience {
         }
         System.out.println("After Concert !!!");
         isGoodTimeAfter = true;
-    }
-
-    @Before("pointcut()")
-    public void eatPopcorn(){
-        System.out.println("Eat popcorn");
-        isPopCorn = true;
     }
 
     @Before("execution(* com.andrzejpe.spring.concert.Performance.singSong(String)) && args(title)")

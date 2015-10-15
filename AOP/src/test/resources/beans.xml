@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	 http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+    <bean id="performance" class="com.andrzejpe.spring.concert.Performance" />
+    <bean id="audience" class="com.andrzejpe.spring.aspect.Audience" />
+
+    <aop:config>
+        <aop:pointcut id="peopleSing" expression="execution(* com.andrzejpe.spring.concert.Performance.singSong(String)) and args(title)" />
+        <aop:pointcut id="perform" expression="execution(* com.andrzejpe.spring.concert.Performance.perform(..))" />
+        <aop:aspect ref="audience">
+            <aop:before method="drinkBeer" pointcut="execution(* com.andrzejpe.spring.concert.Performance.perform(..))" />
+            <aop:before method="eatPopcorn" pointcut-ref="perform" />
+            <aop:before method="peopleSingWithFoo" pointcut-ref="peopleSing" />
+            <aop:after method="buyTShirt" pointcut="execution(* com.andrzejpe.spring.concert.Performance.perform(..))" />
+            <aop:after method="buyCd" pointcut-ref="perform" />
+            <aop:around method="goodTime" pointcut-ref="perform" />
+        </aop:aspect>
+    </aop:config>
+</beans>
