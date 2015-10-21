@@ -40,7 +40,7 @@ public class SpittleControllerTest {
     public void init() {
         spittles = createSpitlleList(20);
         spittleRepository = mock(SpittleRepository.class);
-        when(spittleRepository.findSpittles(anyLong(), eq(20))).thenReturn(spittles);
+        when(spittleRepository.findSpittles(100l, 20)).thenReturn(spittles);
     }
 
     @Test
@@ -49,7 +49,7 @@ public class SpittleControllerTest {
         MockMvc mockMvc = standaloneSetup(sp)
                 .setSingleView(new InternalResourceView("/WEB-INF/views/spittles.jsp"))
                 .build();
-        mockMvc.perform(get("/spittles"))
+        mockMvc.perform(get("/spittles?max=100&count=20"))
                 .andExpect(view().name("spittles"))
                 .andExpect(model().attributeExists("spittleList"))
                 .andExpect(model().attribute("spittleList", hasItems(spittles.toArray())));
