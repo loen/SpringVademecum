@@ -4,23 +4,15 @@ import com.andrzejpe.spring.data.Spittle;
 import com.andrzejpe.spring.data.SpittleRepository;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Matchers;
-import org.mockito.Mock;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.servlet.view.InternalResourceView;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 import static org.hamcrest.Matchers.*;
-import static org.mockito.Matchers.anyLong;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -31,7 +23,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 /**
  * Created by jedrek on 2015-10-17.
  */
-public class SpittleControllerTest {
+public class SpittlesControllerTest {
 
     private SpittleRepository spittleRepository;
     private List<Spittle> spittles;
@@ -45,7 +37,7 @@ public class SpittleControllerTest {
 
     @Test
     public void shouldShowRecentSpittles() throws Exception {
-        SpittleController sp = new SpittleController(spittleRepository);
+        SpittlesController sp = new SpittlesController(spittleRepository);
         MockMvc mockMvc = standaloneSetup(sp)
                 .setSingleView(new InternalResourceView("/WEB-INF/views/spittles.jsp"))
                 .build();
