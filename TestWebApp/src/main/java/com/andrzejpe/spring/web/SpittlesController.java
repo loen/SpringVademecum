@@ -7,11 +7,13 @@ import com.andrzejpe.spring.data.UserRegistration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -44,8 +46,11 @@ public class SpittlesController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String registerUser(UserRegistration userRegistration) {
+    public String registerUser(@Valid UserRegistration userRegistration, Errors errors) {
         spittleRepository.save(userRegistration);
+        if(errors.hasErrors()) {
+            return "redirect:/spittles/register";
+        }
         return "redirect:/spittles/" + userRegistration.getUsername();
     }
 
