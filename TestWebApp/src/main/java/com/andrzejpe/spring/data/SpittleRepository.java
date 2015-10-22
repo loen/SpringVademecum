@@ -9,4 +9,8 @@ public interface SpittleRepository {
     List<Spittle> findSpittles(long max, int count);
 
     Spittle getSpittle(long id);
+
+    User save(UserRegistration user);
+
+    User findUserByName(String userName);
 }

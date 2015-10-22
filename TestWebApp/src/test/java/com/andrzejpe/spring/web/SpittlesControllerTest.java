@@ -2,6 +2,8 @@ package com.andrzejpe.spring.web;
 
 import com.andrzejpe.spring.data.Spittle;
 import com.andrzejpe.spring.data.SpittleRepository;
+import com.andrzejpe.spring.data.User;
+import com.andrzejpe.spring.data.UserRegistration;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
@@ -13,10 +15,11 @@ import java.util.List;
 import java.util.Random;
 
 import static org.hamcrest.Matchers.hasItems;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
@@ -27,12 +30,17 @@ public class SpittlesControllerTest {
 
     private SpittleRepository spittleRepository;
     private List<Spittle> spittles;
+    private UserRegistration userRegistration;
+    private User user;
 
     @Before
     public void init() {
         spittles = createSpitlleList(20);
+        userRegistration = new UserRegistration("Jack", "Black", "jblack", "paslo");
+        user = new User(44, "Jack", "Black", "jblack", "paslo");
         spittleRepository = mock(SpittleRepository.class);
         when(spittleRepository.findSpittles(100l, 20)).thenReturn(spittles);
+        when(spittleRepository.save(userRegistration)).thenReturn(user);
     }
 
     @Test
@@ -46,6 +54,27 @@ public class SpittlesControllerTest {
                 .andExpect(model().attributeExists("spittleList"))
                 .andExpect(model().attribute("spittleList", hasItems(spittles.toArray())));
 
+    }
+
+    @Test
+    public void shouldShowRegistrationForm() throws Exception {
+        SpittlesController sp = new SpittlesController(spittleRepository);
+        MockMvc mockMvc = standaloneSetup(sp).build();
+        mockMvc.perform(get("/spittles/register"))
+                .andExpect(view().name("registrationForm"));
+    }
+
+    @Test
+    public void shouldRegister() throws Exception {
+        SpittlesController sp = new SpittlesController(spittleRepository);
+        MockMvc mockMvc = standaloneSetup(sp).build();
+        mockMvc.perform(post("/spittles/register")
+                .param("firstName", "Jack")
+                .param("lastName", "Black")
+                .param("username", "jblack")
+                .param("password", "paslo"))
+                .andExpect(redirectedUrl("/spittles/jblack"));
+        verify(spittleRepository, atLeastOnce()).save(userRegistration);
     }
 
     private List<Spittle> createSpitlleList(int spitlleSize) {

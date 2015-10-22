@@ -3,9 +3,7 @@ package com.andrzejpe.spring.data;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by jedrek on 2015-10-17.
@@ -14,6 +12,7 @@ import java.util.Random;
 public class SpittleRepositoryImpl implements SpittleRepository {
 
     private Random r = new Random();
+    private Map<String, User> users = new HashMap<>();
 
     @Override
     public List<Spittle> findSpittles(long max, int count) {
@@ -31,5 +30,17 @@ public class SpittleRepositoryImpl implements SpittleRepository {
     @Override
     public Spittle getSpittle(long id) {
         return new Spittle(id, "Spittle for id " + id, LocalTime.now(), r.nextDouble(),r.nextDouble());
+    }
+
+    @Override
+    public User save(UserRegistration user) {
+        User newUser = new User(r.nextLong(), user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword());
+        users.put(newUser.getUsername(), newUser);
+        return newUser;
+    }
+
+    @Override
+    public User findUserByName(String userName) {
+        return users.get(userName);
     }
 }
