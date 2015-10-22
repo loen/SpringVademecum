@@ -13,6 +13,8 @@ import java.util.Random;
 @Component
 public class SpittleRepositoryImpl implements SpittleRepository {
 
+    private Random r = new Random();
+
     @Override
     public List<Spittle> findSpittles(long max, int count) {
         List<Spittle> spittles = new ArrayList<>();
@@ -24,5 +26,10 @@ public class SpittleRepositoryImpl implements SpittleRepository {
             spittles.add(spittle);
         }
         return spittles;
+    }
+
+    @Override
+    public Spittle getSpittle(long id) {
+        return new Spittle(id, "Spittle for id " + id, LocalTime.now(), r.nextDouble(),r.nextDouble());
     }
 }
