@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 public class UserRegistration {
 
     @NotNull
-    @Size(min=3, max = 30)
+    @Size(min=3, max = 30, message = "it shouldn't be null mada!")
     private String firstName;
     @NotNull
     @Size(min=3, max = 30)

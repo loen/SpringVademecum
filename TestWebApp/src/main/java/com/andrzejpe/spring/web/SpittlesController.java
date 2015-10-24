@@ -45,12 +45,31 @@ public class SpittlesController {
         return "registrationForm";
     }
 
+
+    @RequestMapping(value = "/registerjstl", method = RequestMethod.GET)
+    public String showJstlRegistrationForm(Model model){
+        if(!model.containsAttribute("userRegistration")) {
+            UserRegistration userRegistration = new UserRegistration();
+            model.addAttribute(userRegistration);
+        }
+        return "registerjstl";
+    }
+
+    @RequestMapping(value = "/registerjstl", method = RequestMethod.POST)
+    public String registerJstlUser(@Valid UserRegistration userRegistration, Errors errors){
+        if(errors.hasErrors()) {
+            return "registerjstl";
+        }
+        spittleRepository.save(userRegistration);
+        return "redirect:/spittles/" + userRegistration.getUsername();
+    }
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String registerUser(@Valid UserRegistration userRegistration, Errors errors) {
-        spittleRepository.save(userRegistration);
         if(errors.hasErrors()) {
             return "redirect:/spittles/register";
         }
+        spittleRepository.save(userRegistration);
         return "redirect:/spittles/" + userRegistration.getUsername();
     }
 

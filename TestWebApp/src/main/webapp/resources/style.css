@@ -9,3 +9,12 @@ a  {
     font-family:courier;
     font-size:160%;
 }
+
+span.error {
+    color:red;
+}
+
+div.errors {
+    background-color: gray;
+    border: 2px solid red;
+}
