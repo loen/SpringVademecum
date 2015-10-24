@@ -1,0 +1,20 @@
+h2 {
+    color:blue;
+    font-family:verdana;
+    font-size:300%;
+}
+
+a  {
+    color:green;
+    font-family:courier;
+    font-size:160%;
+}
+
+.error {
+    color:red;
+}
+
+.errors {
+    background-color: gray;
+    border: 2px solid red;
+}
