@@ -1,17 +1,12 @@
 package com.andrzejpe.spring.dao;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 /**
  * Created by jedrek on 2015-10-31.
  */
 public class User {
-    @NotNull
-    @Size(min = 3, max = 10)
+
     private String name;
-    @NotNull
-    @Size(min = 8, max = 15)
+
     private String password;
 
     public User(){}

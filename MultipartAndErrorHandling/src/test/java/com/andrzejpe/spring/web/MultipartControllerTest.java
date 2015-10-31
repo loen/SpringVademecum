@@ -1,8 +1,14 @@
 package com.andrzejpe.spring.web;
 
 import org.junit.Test;
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.view.InternalResourceView;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.HashMap;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -27,16 +33,5 @@ public class MultipartControllerTest {
               .andExpect(model().attributeExists("user"));
   }
 
-  @Test
-    public void shouldBeAbleToRegisterUser() throws Exception {
-      MultipartController multipartController = new MultipartController();
-      MockMvc mockMvc = standaloneSetup(multipartController)
-              .build();
 
-      mockMvc.perform(post("/multipart")
-              .param("name", "user_name")
-              .param("password", "user_password"))
-              .andExpect(redirectedUrl("/multipart/user/user_name"));
-
-  }
 }

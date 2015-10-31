@@ -7,15 +7,12 @@
 <body>
 Register multipart user
 <!--@thymesVar id="user" type="com.andrzejpe.spring.dao.User"-->
-<form method="post" th:object="${user}">
+<form method="post" enctype="multipart/form-data" th:object="${user}">
     <input type="text" th:field="*{name}" />
     <input type="password" th:field="*{password}" />
+    <input type="file" name="picture" accept="image/jpeg" />
     <input type="submit" value="register" />
-    <div th:if="${#fields.hasErrors('*')}" >
-        <ul>
-            <li th:each="error : ${#fields.errors()}" th:text="${error}">There are errors</li>
-        </ul>
-    </div>
+
 </form>
 
 </body>
