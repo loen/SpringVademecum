@@ -1,0 +1,15 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+    <title>Hello!</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/style.css}" />
+</head>
+<body>
+Created user: <br/>
+<!--@thymesVar id="name" type="String"-->
+<h1 th:text="${name}"></h1>
+
+</body>
+
+</html>
