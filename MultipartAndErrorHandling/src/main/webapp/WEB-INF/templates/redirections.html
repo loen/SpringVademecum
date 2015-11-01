@@ -1,0 +1,20 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+    <title>Hello!</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/style.css}" />
+</head>
+<body>
+panLamExists:
+<h1 th:text="${panLamExists}"></h1> <br/>
+UserName:
+<h1 th:text="${userName}"></h1> <br/>
+pasloUrl:
+<h1 th:text="${pasloUrl}"></h1> <br/>
+FlashAttributeUser:
+<h1 th:if="${flashUser != null}" th:text="${flashUser.name + ' ' + flashUser.password}"> </h1>
+
+</body>
+
+</html>
