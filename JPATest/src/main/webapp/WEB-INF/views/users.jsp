@@ -4,6 +4,13 @@
     <title>Users</title>
 </head>
 <body>
-Show all users
+Register new user:</br>
+<form method="post">
+    First Name: <input type="text" name="firstName" /></br>
+    Last Name: <input type="text" name="lastName" /></br>
+    <input type="submit" value="Create">
+</form>
+Show all users: </br>
+
 </body>
 </html>
