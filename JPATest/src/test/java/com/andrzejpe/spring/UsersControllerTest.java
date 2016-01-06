@@ -1,5 +1,7 @@
 package com.andrzejpe.spring;
 
+import com.andrzejpe.spring.dao.model.UserRepoImpl;
+import com.andrzejpe.spring.service.UsersService;
 import com.andrzejpe.spring.web.UsersController;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
@@ -15,7 +17,7 @@ public class UsersControllerTest {
 
     @Test
     public void usersControllerIsWorking() throws Exception {
-        UsersController users = new UsersController();
+        UsersController users = new UsersController(new UsersService(new UserRepoImpl()));
         MockMvc mockMvc = standaloneSetup(users).build();
         mockMvc.perform(get("/")).andExpect(view().name("users"));
     }
