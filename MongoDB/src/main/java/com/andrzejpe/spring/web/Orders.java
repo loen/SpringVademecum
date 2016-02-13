@@ -38,7 +38,7 @@ public class Orders {
     @RequestMapping(value = {"/orders"}, method = RequestMethod.GET)
     public String listOrders(Model model) {
         List<Order> orders = ordersService.getAllOrders();
-        model.addAttribute(orders);
+        model.addAttribute("orders", orders);
         return "orders";
     }
 }

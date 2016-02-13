@@ -11,7 +11,7 @@ All orders:</br>
   <c:forEach items="${orders}" var="order">
     <tr>
       <td><c:out value="${order.owner}"/></td>
-      <br>
+      <td>
         <c:forEach items="${order.skus}" var="sku">
           <c:out value="${sku}"/></br>
         </c:forEach>
