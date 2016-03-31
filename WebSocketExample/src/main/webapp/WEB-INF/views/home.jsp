@@ -8,17 +8,25 @@
 </head>
 <body>
     I'm home
+    <br>
+    <div id="live">Socket msgs</div>
 </body>
 <script>
     $(document).ready(function(){
-        if (typeof jQuery != 'undefined') {
+        var url = 'ws://' + window.location.host + '/simple';
+        var sock = new WebSocket(url);
+        sock.onopen = function(){
+            $('#live').empty();
+            $('#live').append('SOCKET OPENED <br>');
+            sock.send("Who Are YOU?");
+        }
 
-            alert("jQuery library is loaded!");
-
-        }else{
-
-            alert("jQuery library is not found!");
-
+        sock.onmessage = function(e){
+            $('#live').append('Recieved: ' + e.data + ' <br>');
+            sock.send("Who Are YOU?");
+        }
+        sock.onclose = function(){
+            $('#live').empty();
         }
     });
 </script>
