@@ -1,0 +1,18 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+    <title>Users!</title>
+</head>
+<body>
+Hello users
+<ul th:each="user : ${users}">
+    <li>
+       <span th:text="${user.name}" />
+       <span th:text="${user.age}" />
+    </li>
+</ul>
+
+</body>
+
+</html>
