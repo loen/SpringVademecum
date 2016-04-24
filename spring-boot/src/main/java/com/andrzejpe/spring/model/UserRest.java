@@ -1,26 +1,22 @@
-package com.andrzejpe.spring.web;
+package com.andrzejpe.spring.model;
 
-import com.andrzejpe.spring.model.User;
+
 import com.andrzejpe.spring.model.persistent.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping(path = {"/", "/users"})
-public class Users {
+@RequestMapping(path = "/user")
+public class UserRest {
 
     @Autowired
-    UserRepository repository;
-
+    UserRepository userRepository;
     @RequestMapping(method = RequestMethod.GET)
-    public String users(Model model) {
-        List<User> users = repository.findAll();
-        model.addAttribute("users", users);
-        return "users";
+    public @ResponseBody User getUser() {
+        User u = userRepository.findByName("Andrzej");
+        return u;
     }
 }
